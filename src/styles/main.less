@@ -1,0 +1,141 @@
+@import 'maps';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    max-width: 375px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+header{
+    width: 100%;
+    padding: 25px 0;
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+
+        .logo{
+            height: 35px;
+            img{
+                height: 100%;
+            }
+        }
+
+        nav{
+            display: none
+        };
+
+        .menu{
+            display: inline-block;
+        }
+    }
+}
+
+li{
+    list-style: none;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+
+    .heroContent{
+        img{
+            height: 40vh;
+            width: 100%;
+            background-size: contain;
+        }   
+    
+        h1{
+            font-family: @interExtraBold;
+            font-size: 3rem;
+            margin: .8rem 0;
+        }
+    
+        p{
+            color: #colors[Dark_grayish_blue];
+        }
+    
+        .heroButton{
+            padding: 15px 20px;
+            background-color: #colors[Soft_red];
+            border: none;
+            margin: 1rem 0 2rem 0;
+        }
+    }
+  
+    aside {
+        background-color: #colors[Very_dark_blue];
+        padding: 15px;
+
+        h2{
+            color: #colors[Soft_orange];
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+      
+        .newContent{
+            border-bottom: solid .1px #colors[Dark_grayish_blue];
+            margin: 1rem 0;
+
+            h3{
+                color: #colors[Off_white];
+                margin-bottom: 1rem;
+            }
+        
+            p{
+                color: #colors[Grayish_blue];
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+.topNews{
+    display: flex;
+    flex-direction:row;
+    width: 340px;
+    height: 150px;
+    margin:2rem 0;
+    .detailsNews{
+        padding-left: 25px;
+        h2{
+            margin-bottom: .8rem;
+            font-size: 2rem;
+            color: #colors[Soft_red];
+            opacity: 0.8;
+        }
+        h4{
+            margin-bottom: .8rem;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+
+/*
+@media screen and (min-width:1240px) {
+    .container{
+        max-width: 1240px;
+        width: 100%;
+    }
+
+    .hero{
+        display: flex;
+        flex-direction: row;
+        .heroContent{
+            margin-right: 20px;
+        }
+
+
+    }
+}
+    */
