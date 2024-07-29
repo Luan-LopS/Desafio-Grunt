@@ -22,6 +22,28 @@ module.exports = function(grunt){
                 }
             }
         },
+        uglify:{
+            development: {
+                options: {
+                    mangle: true,
+                    compress: true, 
+                    beautify: false 
+                },
+                files: {
+                    'dev/scripts/main.min.js': ['src/scripts/main.js']
+                }
+            },
+            production: {
+                options: {
+                    mangle: true,
+                    compress: true, 
+                    beautify: false 
+                },
+                files: {
+                    'dist/scripts/main.min.js': ['src/scripts/main.js']
+                }
+            }
+        },
         watch:{
             styles:{
                 files:['./src/styles/**/*.less'],
@@ -29,16 +51,33 @@ module.exports = function(grunt){
                 options:{
                     livereload:true
                 }
+            },
+            scripts:{
+                files:['./src/scripts/**/*.js'],
+                tasks:['uglify'],
+                options:{
+                    livereload:true
+                }
             }
-        }
+        },
+        imagemin: {
+            dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/assets',
+                    src: ['**/*.{png,jpg,jpeg,gif}'],
+                    dest: 'dist/images'
+                }]
+            }
+        },
 
     })
     grunt.loadNpmTasks('grunt-contrib-less')
     grunt.loadNpmTasks('grunt-contrib-uglify')
     grunt.loadNpmTasks('grunt-contrib-watch')
+    grunt.loadNpmTasks('grunt-contrib-imagemin')
 
 
-    grunt.registerTask('default',['less:development','watch'])
-    grunt.registerTask('build',['less:production'])
-
+    grunt.registerTask('default',['less:development','uglify:development','imagemin','watch'])
+    grunt.registerTask('build',['less:production','uglify:production'])
 }

@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  font-family: inter;
+}
 .container {
   max-width: 375px;
   width: 90%;
@@ -11,6 +14,7 @@
 header {
   width: 100%;
   padding: 25px 0;
+  position: relative;
 }
 header .container {
   display: flex;
@@ -27,12 +31,39 @@ header .container .logo img {
 }
 header .container nav {
   display: none;
+  cursor: pointer;
+  position: absolute;
+  width: 60%;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: hsl(36, 100%, 99%);
+  color: hsl(240, 100%, 5%);
 }
-header .container .menu {
+header .container nav #close {
+  position: relative;
+  padding-left: 80%;
+}
+header .container nav ul li {
+  margin-top: 2rem;
+}
+header .container nav ul li a:hover {
+  color: hsl(5, 85%, 63%);
+}
+header .container #menu {
   display: inline-block;
+  cursor: pointer;
 }
 li {
   list-style: none;
+}
+a {
+  color: hsl(236, 13%, 42%);
+  text-decoration: none;
 }
 .hero {
   display: flex;
@@ -43,28 +74,43 @@ li {
   width: 100%;
   background-size: contain;
 }
-.hero .heroContent h1 {
-  font-family: url('/src/assets/fonts/static/Inter-ExtraBold.ttf');
+.hero .heroContent .heroText {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.hero .heroContent .heroText h1 {
   font-size: 3rem;
   margin: 0.8rem 0;
+  max-width: 375px;
 }
-.hero .heroContent p {
+.hero .heroContent .heroText p {
+  max-width: 375px;
+}
+.hero .heroContent .heroText .heroDetails p {
   color: hsl(236, 13%, 42%);
 }
-.hero .heroContent .heroButton {
+.hero .heroContent .heroText .heroDetails .heroButton {
   padding: 15px 20px;
   background-color: hsl(5, 85%, 63%);
   border: none;
   margin: 1rem 0 2rem 0;
+  cursor: pointer;
+}
+.hero .heroContent .heroText .heroDetails .heroButton:hover {
+  background-color: hsl(240, 100%, 5%);
+  color: hsl(36, 100%, 99%);
 }
 .hero aside {
   background-color: hsl(240, 100%, 5%);
   padding: 15px;
+  font-size: 1.2rem;
+  max-width: 375px;
 }
 .hero aside h2 {
   color: hsl(35, 77%, 62%);
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 2.4rem;
+  margin: 0 0 1.4rem 0;
 }
 .hero aside .newContent {
   border-bottom: solid 0.1px hsl(236, 13%, 42%);
@@ -72,21 +118,28 @@ li {
 }
 .hero aside .newContent h3 {
   color: hsl(36, 100%, 99%);
-  margin-bottom: 1rem;
+  margin: 1.4rem 0 0.6rem 0;
+  cursor: pointer;
+}
+.hero aside .newContent h3:hover {
+  color: hsl(35, 77%, 62%);
 }
 .hero aside .newContent p {
   color: hsl(233, 8%, 79%);
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
 }
 .topNews {
   display: flex;
   flex-direction: row;
   width: 340px;
-  height: 150px;
+  height: 120px;
   margin: 2rem 0;
 }
 .topNews .detailsNews {
-  padding-left: 25px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .topNews .detailsNews h2 {
   margin-bottom: 0.8rem;
@@ -96,24 +149,106 @@ li {
 }
 .topNews .detailsNews h4 {
   margin-bottom: 0.8rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
-/*
-@media screen and (min-width:1240px) {
-    .container{
-        max-width: 1240px;
-        width: 100%;
-    }
-
-    .hero{
-        display: flex;
-        flex-direction: row;
-        .heroContent{
-            margin-right: 20px;
-        }
-
-
-    }
+.topNews .detailsNews h4:hover {
+  color: hsl(5, 85%, 63%);
 }
-    */
+.topNews .detailsNews p {
+  font-size: 0.9rem;
+}
+@media screen and (max-width: 1240px) {
+  .container {
+    max-width: 375px;
+    width: 90%;
+  }
+  header .container nav {
+    display: none;
+  }
+  header .container #menu {
+    display: inline-block;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .container {
+    max-width: 1240px;
+    width: 100%;
+  }
+  header {
+    width: 100%;
+    padding: 25px 0;
+  }
+  header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  }
+  header .container .logo {
+    height: 35px;
+  }
+  header .container .logo img {
+    height: 100%;
+  }
+  header .container nav {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    height: 0;
+  }
+  header .container nav #close {
+    display: none;
+  }
+  header .container nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  header .container nav ul li {
+    padding-left: 30px;
+    margin-top: 0;
+  }
+  header .container #menu {
+    display: none;
+  }
+  .hero {
+    display: flex;
+    flex-direction: row;
+  }
+  .hero .heroContent {
+    margin-right: 20px;
+    width: 95vw;
+  }
+  .hero .heroContent .heroText {
+    display: flex;
+    width: 100%;
+  }
+  .hero .heroContent .heroText h1 {
+    font-size: 3.8rem;
+    margin: 0;
+    padding: 20px 20px 0 0;
+    width: 50%;
+  }
+  .hero .heroContent .heroText .heroDetails {
+    padding: 20px 0 0 20px;
+    width: 50%;
+    font-size: 1.4rem;
+  }
+  .hero .heroContent .heroText .heroDetails p {
+    color: hsl(236, 13%, 42%);
+  }
+  .topNewsContent {
+    display: flex;
+    justify-content: space-between;
+  }
+  .topNewsContent .topNews {
+    width: 345px;
+  }
+}
 
